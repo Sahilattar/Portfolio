@@ -1,0 +1,135 @@
+{
+  "engineer": {
+    "name": "Sahil Attar",
+    "role": "Data Scientist & AI/ML Engineer",
+    "summary": "B.Tech (AI & Data Science) graduate who has built and deployed 2 end-to-end ML web applications (FastAPI + Render), trained on 48,895 and 5,000 records, plus SQL, Power BI and Python analytics projects. Seeking an entry-level Data Scientist role to turn data into deployed, decision-ready solutions.",
+    "education": "B.Tech in Artificial Intelligence and Data Science (June 2026)",
+    "college": "Nagesh Karajgi Orchid College of Engineering and Technology, Solapur, Maharashtra",
+    "location": "Solapur, Maharashtra, India",
+    "email": "sahilattar3011@gmail.com",
+    "phone": "+91 9404307559",
+    "github": "https://github.com/Sahilattar",
+    "linkedin": "https://www.linkedin.com/in/sahil-attar-398a74257"
+  },
+  "skills": {
+    "programming_and_data": {
+      "title": "Programming & Data",
+      "icon": "💻",
+      "items": [
+        "Python",
+        "SQL",
+        "NumPy",
+        "Pandas",
+        "Excel",
+        "MySQL",
+        "Jupyter Notebook"
+      ]
+    },
+    "machine_learning": {
+      "title": "Machine Learning",
+      "icon": "⚙️",
+      "items": [
+        "Scikit-learn",
+        "Classification",
+        "Regression",
+        "Feature Engineering",
+        "Model Evaluation",
+        "Hyperparameter Tuning",
+        "GridSearchCV",
+        "RandomizedSearchCV"
+      ]
+    },
+    "deep_learning": {
+      "title": "Deep Learning",
+      "icon": "🧠",
+      "items": [
+        "ANN",
+        "CNN",
+        "RNN",
+        "LSTM",
+        "GRU",
+        "Transformers",
+        "Attention Mechanisms",
+        "Transfer Learning",
+        "Computer Vision",
+        "NLP",
+        "TensorFlow",
+        "Keras",
+        "Model Optimization"
+      ]
+    },
+    "statistics_and_eda": {
+      "title": "Statistics & EDA",
+      "icon": "📊",
+      "items": [
+        "Descriptive Statistics",
+        "EDA",
+        "Correlation Analysis",
+        "Regression Analysis",
+        "Hypothesis Testing",
+        "Data Cleaning",
+        "Missing Value Treatment"
+      ]
+    },
+    "data_visualization_and_bi": {
+      "title": "Data Visualization & BI",
+      "icon": "📈",
+      "items": [
+        "Power BI",
+        "DAX",
+        "KPI Development",
+        "Interactive Dashboards",
+        "Slicers",
+        "Matplotlib",
+        "Seaborn",
+        "Excel"
+      ]
+    },
+    "deployment_and_development": {
+      "title": "Deployment & Development",
+      "icon": "🚀",
+      "items": [
+        "FastAPI",
+        "REST APIs",
+        "Docker",
+        "Render",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    },
+    "tools_and_version_control": {
+      "title": "Tools & Version Control",
+      "icon": "🛠️",
+      "items": [
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Google Colab",
+        "Jupyter Notebook"
+      ]
+    }
+  },
+  "certifications": [
+    {
+      "title": "Data Science Professional Certificate",
+      "organization": "Devtown",
+      "year": "2024"
+    },
+    {
+      "title": "SQL",
+      "organization": "Great Learning",
+      "year": "2023"
+    },
+    {
+      "title": "Python",
+      "organization": "Great Learning",
+      "year": "2023"
+    },
+    {
+      "title": "Data Science",
+      "organization": "Udemy",
+      "status": "In progress"
+    }
+  ]
+}

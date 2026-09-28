@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "id": "airbnb-room-classifier",
+      "icon": "🏠",
+      "title": "Airbnb Room Type Classifier",
+      "category": "ML Web App · Python · Scikit-learn · FastAPI · Render",
+      "tags": ["ml", "web"],
+      "live_url": "https://airbnb-room-type-classifier-1.onrender.com/",
+      "github_url": "https://github.com/Sahilattar/Airbnb-Room-Type-Classifier",
+      "highlights": [
+        "Predicts whether an NYC Airbnb listing is an Entire home, Private room, or Shared room using listing details such as price, location, reviews, and availability.",
+        "Compared multiple classification models and tuned the best-performing model using RandomizedSearchCV.",
+        "Achieved 85.5% accuracy and 0.73 Macro F1 on 48,895 listings.",
+        "Deployed the trained ML pipeline through a FastAPI REST API with an interactive web interface."
+      ]
+    },
+    {
+      "id": "mindmetric-ai",
+      "icon": "🧠",
+      "title": "MindMetric AI — Student Mental Health Predictor",
+      "category": "ML Web App · Python · Scikit-learn · FastAPI · Render",
+      "tags": ["ml", "web"],
+      "live_url": "https://mindmetric-ai-1.onrender.com/",
+      "github_url": "https://github.com/Sahilattar/MindMetric-AI",
+      "highlights": [
+        "Predicts a student mental health score from lifestyle, study habits, social media usage, sleep, and stress-related factors.",
+        "Built and tuned a regression pipeline using Random Forest, preprocessing, feature encoding, and scaling.",
+        "Achieved R² 0.87 with RMSE 0.49 on 5,000 student records.",
+        "Integrated the model with FastAPI + Pydantic and deployed a web application on Render."
+      ]
+    },
+    {
+      "id": "employee-attrition-analysis",
+      "icon": "📊",
+      "title": "Employee Attrition Analysis",
+      "category": "Data Analytics · MySQL · Python · Power BI · DAX",
+      "tags": ["data"],
+      "highlights": [
+        "Analyses employee data to identify why employees leave and which groups have higher attrition risk.",
+        "Used SQL and Python to clean, analyze, and segment 1,400+ HR records.",
+        "Built an interactive Power BI dashboard with DAX KPIs and dynamic filters.",
+        "Identified patterns across department, role, salary, tenure, age, and education."
+      ]
+    },
+    {
+      "id": "retail-sales-analysis",
+      "icon": "🛒",
+      "title": "Retail Sales Performance Analysis",
+      "category": "Data Analytics · Python · Pandas · NumPy · Matplotlib · Seaborn",
+      "tags": ["data", "ml"],
+      "highlights": [
+        "Explores retail sales data to understand product performance, customer segments, and sales trends.",
+        "Cleaned and transformed the dataset using Pandas and NumPy.",
+        "Performed EDA and statistical analysis to identify important sales patterns.",
+        "Created visualizations with Matplotlib and Seaborn to communicate business insights."
+      ]
+    }
+  ]
+}
