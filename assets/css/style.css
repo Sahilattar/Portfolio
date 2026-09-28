@@ -1184,8 +1184,8 @@ textarea.form-input {
 @media (max-width: 1024px) {
   main {
     flex-direction: column;
-    margin: 30px auto;
-    padding: 0 15px;
+    margin: 20px auto;
+    padding: 0 12px;
   }
 
   .sidebar {
@@ -1193,45 +1193,70 @@ textarea.form-input {
     min-width: 100%;
     position: relative;
     top: 0;
-    padding: 25px;
+    padding: 20px;
   }
 
   .sidebar-info {
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     text-align: left;
-    gap: 20px;
+    gap: 16px;
+    position: relative;
   }
 
   .avatar-box {
-    width: 90px;
-    height: 90px;
-    border-radius: 20px;
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    flex-shrink: 0;
+  }
+
+  .info-content {
+    flex: 1;
+    min-width: 0;
   }
 
   .info-content .name {
     text-align: left;
+    font-size: 21px;
+    margin-top: 0;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .info-content .title {
     margin: 0;
+    font-size: 11.5px;
+    padding: 4px 10px;
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .info_more-btn {
     display: flex;
     align-items: center;
-    gap: 6px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    border-radius: 0 15px;
-    font-size: 12px;
+    justify-content: center;
+    gap: 8px;
+    position: relative; /* Position relative keeps ::before strictly inside this button */
+    width: 100%;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
     color: var(--orange-yellow-crayola);
     background: var(--border-gradient-onyx);
-    padding: 10px 14px;
+    padding: 10px 16px;
     box-shadow: var(--shadow-2);
     cursor: pointer;
     z-index: 2;
+    margin-top: 4px;
+    transition: var(--transition-1);
   }
 
   .info_more-btn::before {
@@ -1254,27 +1279,55 @@ textarea.form-input {
   .navbar {
     position: sticky;
     top: 0;
-    right: auto;
+    left: 0;
+    right: 0;
     width: 100%;
     border-radius: 20px 20px 0 0;
     margin-bottom: -1px;
+    padding: 0;
+    background: hsla(240, 1%, 17%, 0.95);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+    overflow: hidden;
   }
 
   .navbar-list {
-    justify-content: center;
-    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; /* Single line: never wraps */
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+  }
+
+  .navbar-item {
+    flex: 1 1 0%; /* Exactly 20% width per item */
+    min-width: 0;
+    text-align: center;
+    margin: 0;
     padding: 0;
   }
 
   .navbar-link {
-    padding: 16px 10px;
-    font-size: 14px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 14px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: -0.2px;
+    box-sizing: border-box;
   }
 
   article {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    padding: 30px 20px;
+    padding: 26px 18px;
   }
 }
 
@@ -1287,12 +1340,32 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 
-  .navbar-list {
-    gap: 6px;
+  .navbar-link {
+    font-size: 11.5px;
+    padding: 13px 1px;
+    letter-spacing: -0.3px;
+  }
+}
+
+@media (max-width: 380px) {
+  .avatar-box {
+    width: 68px;
+    height: 68px;
+    border-radius: 14px;
+  }
+
+  .info-content .name {
+    font-size: 18px;
+  }
+
+  .info-content .title {
+    font-size: 10.5px;
+    padding: 3px 8px;
   }
 
   .navbar-link {
-    font-size: 13px;
-    padding: 14px 8px;
+    font-size: 10.5px;
+    padding: 12px 1px;
+    letter-spacing: -0.4px;
   }
 }

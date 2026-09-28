@@ -58,6 +58,16 @@ const sidebarMore = document.getElementById('sidebarMore');
 if (sidebarBtn && sidebarMore) {
   sidebarBtn.addEventListener('click', () => {
     sidebarMore.classList.toggle('show');
+    const isShowing = sidebarMore.classList.contains('show');
+    const btnSpan = sidebarBtn.querySelector('span');
+    if (btnSpan) {
+      btnSpan.textContent = isShowing ? 'Hide Contacts' : 'Show Contacts';
+    }
+    const svg = sidebarBtn.querySelector('svg');
+    if (svg) {
+      svg.style.transform = isShowing ? 'rotate(180deg)' : 'rotate(0deg)';
+      svg.style.transition = 'transform 0.3s ease';
+    }
   });
 }
 
