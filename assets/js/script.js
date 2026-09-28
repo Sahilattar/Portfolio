@@ -38,6 +38,17 @@ navLinks.forEach(btn => {
   });
 });
 
+// Check URL hash on page load (e.g. #resume, #portfolio, #about)
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  if (hash) {
+    const targetBtn = Array.from(navLinks).find(btn => btn.textContent.trim().toLowerCase() === hash);
+    if (targetBtn) {
+      targetBtn.click();
+    }
+  }
+});
+
 // -------------------------------------------------------------------
 // 2. Mobile Sidebar Contact Toggle ("Show Contacts")
 // -------------------------------------------------------------------
