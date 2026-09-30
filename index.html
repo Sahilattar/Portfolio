@@ -709,9 +709,12 @@
           <!-- Form status feedback alert -->
           <div id="formStatus" class="form-status"></div>
 
-          <!-- Working Contact Form (AJAX submission to FormSubmit) -->
-          <form class="contact-form" id="contactForm" action="https://formsubmit.co/sahilattar3011@gmail.com" method="POST">
-            <!-- FormSubmit hidden configurations -->
+          <!-- Working Contact Form (Web3Forms with Instant Mailto Fallback) -->
+          <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Access Key (Paste your access key here) -->
+            <input type="hidden" name="access_key" id="web3FormsKey" value="YOUR_ACCESS_KEY_HERE">
+
+            <!-- FormSubmit & Web3Forms configuration -->
             <input type="hidden" name="_subject" value="New Portfolio Message for Sahil Attar!">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
