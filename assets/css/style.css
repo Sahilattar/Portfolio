@@ -1060,6 +1060,20 @@ article.active {
 .form-input:focus {
   outline: none;
   border-color: var(--orange-yellow-crayola);
+  background: var(--eerie-black-1);
+  color: var(--white-2);
+}
+
+/* Prevent Chrome/Edge/Safari autofill from turning dark inputs white */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover, 
+.form-input:-webkit-autofill:focus, 
+.form-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #1e1e1f inset !important;
+  box-shadow: 0 0 0 1000px #1e1e1f inset !important;
+  -webkit-text-fill-color: #fafafa !important;
+  caret-color: #fafafa !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-input::placeholder {

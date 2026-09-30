@@ -93,7 +93,7 @@ filterButtons.forEach(btn => {
 });
 
 // -------------------------------------------------------------------
-// 4. Contact Form Submission (Web3Forms & FormSubmit support + Mailto Fallback)
+// 4. Contact Form Submission (Web3Forms Instant & Mailto Fallback)
 // -------------------------------------------------------------------
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -128,31 +128,57 @@ if (contactForm) {
     const senderEmail = (formObject.email || '').trim();
     const senderMessage = (formObject.message || '').trim();
 
-    // Prepare a mailto fallback URL with prefilled draft
+    // Prepare a mailto URL with prefilled recipient, subject, and body
     const mailtoSubject = encodeURIComponent(`Portfolio Inquiry from ${senderName || 'Visitor'}`);
-    const mailtoBody = encodeURIComponent(`Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${senderMessage}`);
+    const mailtoBody = encodeURIComponent(`Hi Sahil,\n\nName: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${senderMessage}`);
     const mailtoUrl = `mailto:sahilattar3011@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
-    try {
-      // Determine endpoint: Web3Forms if access_key exists, else FormSubmit
-      const hasWeb3Key = formObject.access_key && formObject.access_key.trim().length > 0 && formObject.access_key !== 'YOUR_ACCESS_KEY_HERE';
-      const endpoint = hasWeb3Key
-        ? 'https://api.web3forms.com/submit'
-        : 'https://formsubmit.co/ajax/sahilattar3011@gmail.com';
+    const rawKey = (formObject.access_key || '').trim();
+    const hasWeb3Key = rawKey.length > 0 && rawKey !== 'YOUR_ACCESS_KEY_HERE';
 
-      const response = await fetch(endpoint, {
+    // If Web3Forms access key is not yet set, provide instant response (no hanging)
+    if (!hasWeb3Key) {
+      setTimeout(() => {
+        formBtn.disabled = false;
+        formBtn.innerHTML = originalBtnHtml;
+
+        if (formStatus) {
+          formStatus.className = 'form-status warning';
+          formStatus.innerHTML = `
+            <strong>✉️ Ready to send:</strong> Click below to deliver your message directly to Sahil's email (pre-filled draft).<br>
+            <a href="${mailtoUrl}" class="form-fallback-link" style="margin-top: 8px;">
+              Open in Email App & Send
+            </a>
+          `;
+          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Try opening the pre-filled email client automatically
+        try {
+          window.location.href = mailtoUrl;
+        } catch (_) {}
+      }, 300);
+      return;
+    }
+
+    // When Web3Forms key IS configured, send via fast API with strict 4s timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formObject)
+        body: JSON.stringify(formObject),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
 
       const result = await response.json().catch(() => ({}));
-
       const isSuccess = response.ok && (result.success === true || result.success === 'true');
-      const isActivationNeeded = result.message && result.message.toLowerCase().includes('activation');
 
       if (isSuccess) {
         if (formStatus) {
@@ -160,33 +186,27 @@ if (contactForm) {
           formStatus.innerHTML = `✓ Thank you, ${senderName || 'there'}! Your message has been sent successfully to Sahil.`;
         }
         contactForm.reset();
-      } else if (isActivationNeeded) {
-        if (formStatus) {
-          formStatus.className = 'form-status warning';
-          formStatus.innerHTML = `
-            ⚠️ <strong>Form Activation Required:</strong> FormSubmit sent an activation link to <code>sahilattar3011@gmail.com</code>.<br>
-            Please check your inbox or spam folder and click <strong>"Activate Form"</strong>.<br>
-            <a href="${mailtoUrl}" class="form-fallback-link">Send directly via Email App instead</a>
-          `;
-        }
       } else {
-        const errorReason = result.message || `Server status ${response.status}`;
-        throw new Error(errorReason);
+        throw new Error(result.message || `Server status ${response.status}`);
       }
     } catch (err) {
+      clearTimeout(timeoutId);
+      const isTimeout = err.name === 'AbortError';
+      const errorMsg = isTimeout ? 'Request timed out' : (err.message || 'Service unavailable');
+
       if (formStatus) {
         formStatus.className = 'form-status error';
         formStatus.innerHTML = `
-          ✕ <strong>Unable to deliver automatically:</strong> (${err.message || 'Service temporarily unreachable'}).<br>
+          ✕ <strong>Notice (${errorMsg}):</strong> Could not deliver in background.<br>
           <a href="${mailtoUrl}" class="form-fallback-link">
-            ✉️ Click here to open and send via your Email Client
+            ✉️ Click here to send your message via your Email Client
           </a>
         `;
       }
+    } finally {
       if (formStatus) {
         formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-    } finally {
       formBtn.disabled = false;
       formBtn.innerHTML = originalBtnHtml;
     }
